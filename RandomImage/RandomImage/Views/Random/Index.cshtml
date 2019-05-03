@@ -1,0 +1,36 @@
+﻿@model RandomIndexViewModel
+
+@{
+	ViewBag.Title = "Random Images";
+}
+
+<div class="d-flex justify-content-center">
+	<div class="card m-3 p-1 bg-dark" style="max-width:60%">
+		<img src="~/Images/@Html.DisplayFor(model => model.image.Filename)"
+			 alt="@Html.DisplayFor(model => model.image.Name)"
+			 title="@Html.DisplayFor(model => model.image.Name)"
+			 class="card-img-top img-fluid" />
+		<div style="position: absolute; bottom:0px; right:0px;">
+			<div class="card m-3 bg-dark p-2">
+				<div class="row">
+					<form asp-controller="random" asp-action="like" class="col-md-4" method="post">
+						<input type="image" src="~/lib/open-iconic/png/thumb-up-4x.png" />
+						<div hidden="hidden">
+							@Html.EditorForModel()
+							@Html.EditorFor(model => model.image)
+							@Html.EditorFor(model => model.user)
+						</div>
+					</form>
+					<form asp-controller="random" asp-action="dislike" class="col-md-4" method="post">
+						<input type="image" src="~/lib/open-iconic/png/thumb-down-4x.png" />
+						<div hidden="hidden">
+							@Html.EditorForModel()
+							@Html.EditorFor(model => model.image)
+							@Html.EditorFor(model => model.user)
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

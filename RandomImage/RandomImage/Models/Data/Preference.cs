@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace RandomImage.Models
 {
-	public enum Preferance
+	public enum Preference
 	{
 		Dislike,
 		Like

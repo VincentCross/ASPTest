@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace RandomImage.Models
 {
-	public class UserPreferance
+	public class UserPreference
 	{
 		[Required]
 		public User user { get; set; }
 		[Required]
 		public Image image { get; set; }
 		[Required]
-		public Preferance preference { get; set; }
-	}
+		public Preference preference { get; set; }
+	}	
 }

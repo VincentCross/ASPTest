@@ -27,21 +27,23 @@ namespace RandomImage.Controllers
 			return View("~/Views/Home/Index.cshtml", model);
 		}
 
-		public ViewResult Random()
+		public IActionResult Random()
 		{
-			Image randomImage = _imageRepository.GetRandomImage();
-
-			return View("~/Views/Home/Random.cshtml", randomImage);
+			return RedirectToAction("index", "random");
 		}
 
 		public ViewResult Likes()
 		{
-			return View("~/Views/Home/Likes.cshtml");
+			var model = _userPreferenceRepository.GetAllLikes();
+
+			return View("~/Views/Home/Likes.cshtml", model);
 		}
 
 		public ViewResult Dislikes()
 		{
-			return View("~/Views/Home/Dislikes.cshtml");
+			var model = _userPreferenceRepository.GetAllDislikes();
+
+			return View("~/Views/Home/Dislikes.cshtml", model);
 		}
 	}
 }
