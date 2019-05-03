@@ -13,10 +13,13 @@
     {
       "library": "open-iconic@1.1.1",
       "destination": "wwwroot/lib/open-iconic/",
-      "files": [
-        "font/css/open-iconic.min.css",
-        "png/home.png"
-      ]
+			"files": [
+				"font/css/open-iconic.min.css",
+				"png/home-2x.png",
+				"png/thumb-down-4x.png",
+				"png/thumb-up-4x.png",
+				"png/ban-4x.png"
+			]
     }
   ]
 }

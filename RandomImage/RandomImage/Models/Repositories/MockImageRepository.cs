@@ -13,7 +13,7 @@ namespace RandomImage.Models.Repositories
 		{
 			_imageList = new List<Image>()
 			{
-				new Image() { Id = 1, Name = "Image1", Filename = "alberto-gasco-1397222-unsplash"},
+				new Image() { Id = 1, Name = "Image1", Filename = "alberto-gasco-1397222-unsplash.jpg"},
 				new Image() { Id = 4, Name = "Image2", Filename = "andrea-reiman-1387147-unsplash.jpg"},
 				new Image() { Id = 8, Name = "Image3", Filename = "aviv-ben-or-1494731-unsplash.jpg"},
 				new Image() { Id = 9, Name = "Image4", Filename = "christian-neuheuser-1487789-unsplash.jpg"},
