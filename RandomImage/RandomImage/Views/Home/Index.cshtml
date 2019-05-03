@@ -1,5 +1,15 @@
-﻿@{
+﻿@model IEnumerable<User>
+
+@{
 	ViewBag.Title = "Random Images";
 }
 
-<h1>Hello Dystopian World!</h1>
+<div>
+	@foreach (var user in Model)
+	{
+		<div class="card m-3">
+			<h3>ID: @user.Id</h3>
+			<h3>Name: @user.Username</h3>
+		</div>
+	}
+</div>

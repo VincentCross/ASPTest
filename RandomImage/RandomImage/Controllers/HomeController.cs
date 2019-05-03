@@ -11,18 +11,37 @@ namespace RandomImage.Controllers
 	{
 		private readonly IUserRepository _userRepository;
 		private readonly IImageRepository _imageRepository;
-		private readonly IUserPreferenceRepository _userPreferanceRepository;
+		private readonly IUserPreferenceRepository _userPreferenceRepository;
 
 		public HomeController(IUserRepository userRepository, IImageRepository imageRepository, IUserPreferenceRepository userPreferenceRepository)
 		{
-			userRepository = _userRepository;
-			imageRepository = _imageRepository;
-			userPreferenceRepository = _userPreferanceRepository;
+			_userRepository = userRepository;
+			_imageRepository = imageRepository;
+			_userPreferenceRepository = userPreferenceRepository;
 		}
 
 		public ViewResult Index()
 		{
-			return View("~/Views/Home/Index.cshtml");
+			var model = _userRepository.GetAllUsers();
+
+			return View("~/Views/Home/Index.cshtml", model);
+		}
+
+		public ViewResult Random()
+		{
+			Image randomImage = _imageRepository.GetRandomImage();
+
+			return View("~/Views/Home/Random.cshtml", randomImage);
+		}
+
+		public ViewResult Likes()
+		{
+			return View("~/Views/Home/Likes.cshtml");
+		}
+
+		public ViewResult Dislikes()
+		{
+			return View("~/Views/Home/Dislikes.cshtml");
 		}
 	}
 }

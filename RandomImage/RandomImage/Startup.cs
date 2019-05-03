@@ -26,8 +26,8 @@ namespace RandomImage
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddMvc();
-			services.AddSingleton<IImageRepository, MockImageRepository>();
 			services.AddSingleton<IUserRepository, MockUserRepository>();
+			services.AddSingleton<IImageRepository, MockImageRepository>();
 			services.AddSingleton<IUserPreferenceRepository, MockUserPreferanceRepository>();
 		}
 

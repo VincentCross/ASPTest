@@ -1,0 +1,11 @@
+﻿@model Image
+
+@{
+	ViewBag.Title = "Random Images";
+}
+
+<div>
+	<div class="card m-3">
+		<img src="~/Images/@Html.DisplayFor(model => model.Filename)" alt="@Html.DisplayFor(model => model.Name)" title="@Html.DisplayFor(model => model.Name)" />
+	</div>
+</div>
