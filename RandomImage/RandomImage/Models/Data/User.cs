@@ -14,4 +14,3 @@ namespace RandomImage.Models
 		public string Username { get; set; }
 	}
 }
-}

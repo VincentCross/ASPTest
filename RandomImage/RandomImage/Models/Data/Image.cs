@@ -13,7 +13,6 @@ namespace RandomImage.Models
 		[MaxLength(50, ErrorMessage = "Image name cannot exceed 50 characters")]
 		public string Name { get; set; }
 		[Required]
-		public string Path { get; set; }
+		public string Filename { get; set; }
 	}
-}
 }
