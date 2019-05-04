@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RandomImage.Models;
+using RandomImage.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +35,22 @@ namespace RandomImage.Controllers
 
 		public ViewResult Likes()
 		{
-			var model = _userPreferenceRepository.GetAllLikes();
+			User currentUser = new User() { Id = 1, Username = "Bob" }; // TODO implement user recognition
+
+			// Get all likes
+			IEnumerable<UserPreference> userPreferenceList = _userPreferenceRepository.GetLikesForUser(currentUser);
+
+			// Prepare model
+			HomeLikesDislikesViewModel model = new HomeLikesDislikesViewModel() { user = currentUser };
+			List<Image> imageList = new List<Image>();
+
+			// Add images to model based on preference list
+			foreach(UserPreference userPreference in userPreferenceList)
+			{
+				imageList.Add(_imageRepository.GetImage(userPreference.imageId));
+			}
+
+			model.images = imageList;
 
 			return View("~/Views/Home/Likes.cshtml", model);
 		}

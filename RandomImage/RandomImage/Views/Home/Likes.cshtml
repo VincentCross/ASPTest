@@ -1,15 +1,15 @@
-﻿@model IEnumerable<UserPreference>
+﻿@model HomeLikesDislikesViewModel
 
 @{
 	ViewBag.Title = "Random Images";
 }
 
 <div>
-	@foreach (var userPreference in Model)
+	<h1>UserID: @Html.DisplayFor(model => model.user.Id)</h1>
+	@foreach (var image in Model.images)
 	{
 		<div class="card m-3">
-			<h3>UserID: @userPreference.userId</h3>
-			<h3>ImageID: @userPreference.imageId</h3>
+			<h3>ImageID: @image.Id</h3>
 		</div>
 	}
 </div>

@@ -59,6 +59,16 @@ namespace RandomImage.Models.Repositories
 			return _userPreferencesList;
 		}
 
+		public IEnumerable<UserPreference> GetDislikesForUser(User user)
+		{
+			return _userPreferencesList.FindAll(usp => usp.userId == user.Id && usp.preference == Preference.Dislike);
+		}
+
+		public IEnumerable<UserPreference> GetLikesForUser(User user)
+		{
+			return _userPreferencesList.FindAll(usp => usp.userId == user.Id && usp.preference == Preference.Like);
+		}
+
 		public UserPreference GetPreference(int userId, int imageId)
 		{
 			return _userPreferencesList.FirstOrDefault(usp => usp.userId == userId && usp.imageId == imageId);
