@@ -7,7 +7,8 @@ namespace RandomImage.Models
 {
 	public interface IUserRepository
 	{
-		User GetUser(int Id);
+		User GetUser(int id);
+		User GetUser(string username);
 		IEnumerable<User> GetAllUsers();
 		User Add(User user);
 		//User Update(User userChanges);

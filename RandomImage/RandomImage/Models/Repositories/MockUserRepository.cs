@@ -31,9 +31,14 @@ namespace RandomImage.Models.Repositories
 			return _userList;
 		}
 
-		public User GetUser(int Id)
+		public User GetUser(int id)
 		{
-			return _userList.FirstOrDefault(us => us.Id == Id);
+			return _userList.FirstOrDefault(us => us.Id == id);
+		}
+
+		public User GetUser(string username)
+		{
+			return _userList.FirstOrDefault(us => us.Username == username);
 		}
 	}
 }
