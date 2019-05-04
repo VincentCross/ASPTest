@@ -9,6 +9,7 @@ namespace RandomImage.ViewModels
 	public class HomeLikesDislikesViewModel
 	{
 		public User user { get; set; }
-		public IEnumerable<Image> images { get; set; }
+		public List<Image> images { get; set; }
+		public Image removeImage { get; set; }
 	}
 }

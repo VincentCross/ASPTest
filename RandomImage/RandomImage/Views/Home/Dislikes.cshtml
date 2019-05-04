@@ -1,15 +1,32 @@
-﻿@model IEnumerable<UserPreference>
+﻿@model HomeLikesDislikesViewModel
 
 @{
 	ViewBag.Title = "Random Images";
 }
 
 <div>
-	@foreach (var userPreference in Model)
-	{
-		<div class="card m-3">
-			<h3>UserID: @userPreference.userId</h3>
-			<h3>ImageID: @userPreference.imageId</h3>
-		</div>
-	}
+	<h1>UserID: @Html.DisplayFor(model => model.user.Id)</h1>
+	<div class="row m-3 justify-content-center">
+		@foreach (var image in Model.images)
+		{
+			<div class="card m-3 bg-dark p-1" style="width:300px; height:100%; object-fit: cover">
+				<img class="img-fluid" src="~/Images/@image.Filename" alt="@image.Name" />
+				<div style="position: absolute; bottom:0px; right:0px;">
+					<div class="card m-2 bg-dark p-1">
+						<div class="col">
+							<form asp-controller="home" asp-action="dislikes" method="post" class="row align-content-center justify-content-center">
+								<input type="image" src="~/lib/open-iconic/png/ban-4x.png" height="20" width="20" />
+								<div hidden="hidden">
+									@{Model.removeImage = image;}
+									@Html.EditorForModel()
+									@Html.EditorFor(model => model.user)
+									@Html.EditorFor(model => model.removeImage)
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		}
+	</div>
 </div>
