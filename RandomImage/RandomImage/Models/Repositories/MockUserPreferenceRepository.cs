@@ -20,11 +20,10 @@ namespace RandomImage.Models.Repositories
 			return userPreference;
 		}
 
-		public UserPreference Delete(User user, Image image)
+		public UserPreference Delete(UserPreference userPreference)
 		{
-			UserPreference userPreferenceToDelete = GetPreference(user, image);
-			_userPreferencesList.Remove(userPreferenceToDelete);
-			return userPreferenceToDelete;
+			_userPreferencesList.Remove(userPreference);
+			return userPreference;
 		}
 
 		public IEnumerable<UserPreference> GetAllDislikes()
@@ -60,14 +59,14 @@ namespace RandomImage.Models.Repositories
 			return _userPreferencesList;
 		}
 
-		public UserPreference GetPreference(User user, Image image)
+		public UserPreference GetPreference(int userId, int imageId)
 		{
-			return _userPreferencesList.FirstOrDefault(usp => usp.user == user && usp.image == image);
+			return _userPreferencesList.FirstOrDefault(usp => usp.userId == userId && usp.imageId == imageId);
 		}
 
 		public UserPreference Update(UserPreference userPreferenceChanges)
 		{
-			UserPreference userPreferenceToUpdate = GetPreference(userPreferenceChanges.user, userPreferenceChanges.image);
+			UserPreference userPreferenceToUpdate = GetPreference(userPreferenceChanges.userId, userPreferenceChanges.imageId);
 
 			if (userPreferenceToUpdate != null)
 			{

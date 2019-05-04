@@ -7,12 +7,12 @@ namespace RandomImage.Models
 {
 	public interface IUserPreferenceRepository
 	{
-		UserPreference GetPreference(User user, Image image);
+		UserPreference GetPreference(int userId, int imageId);
 		IEnumerable<UserPreference> GetAllUserPreferences();
 		IEnumerable<UserPreference> GetAllLikes();
 		IEnumerable<UserPreference> GetAllDislikes();
 		UserPreference Add(UserPreference userPreference);
 		UserPreference Update(UserPreference userPreferenceChanges);
-		UserPreference Delete(User user, Image image);
+		UserPreference Delete(UserPreference userPreference);
 	}
 }

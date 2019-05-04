@@ -40,8 +40,8 @@ namespace RandomImage.Controllers
 		{
 			UserPreference userPreference = new UserPreference()
 			{
-				user = randomIndexViewModel.user,
-				image = randomIndexViewModel.image,
+				userId = randomIndexViewModel.user.Id,
+				imageId = randomIndexViewModel.image.Id,
 				preference = Preference.Like
 			};
 
@@ -56,8 +56,8 @@ namespace RandomImage.Controllers
 		{
 			UserPreference userPreference = new UserPreference()
 			{
-				user = randomIndexViewModel.user,
-				image = randomIndexViewModel.image,
+				userId = randomIndexViewModel.user.Id,
+				imageId = randomIndexViewModel.image.Id,
 				preference = Preference.Dislike
 			};
 

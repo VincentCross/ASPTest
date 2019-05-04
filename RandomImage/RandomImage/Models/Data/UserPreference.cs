@@ -8,10 +8,11 @@ namespace RandomImage.Models
 {
 	public class UserPreference
 	{
+		public int Id { get; set; }
 		[Required]
-		public User user { get; set; }
+		public int userId { get; set; }
 		[Required]
-		public Image image { get; set; }
+		public int imageId { get; set; }
 		[Required]
 		public Preference preference { get; set; }
 	}	
