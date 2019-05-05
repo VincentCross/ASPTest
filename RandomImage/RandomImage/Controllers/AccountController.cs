@@ -37,6 +37,8 @@ namespace RandomImage.Controllers
 		{
 			if (username != null)
 			{
+				LogInUser(username);
+
 				return View("_LoggedIn");
 			}
 
