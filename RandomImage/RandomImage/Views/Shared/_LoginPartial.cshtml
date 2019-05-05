@@ -1,7 +1,7 @@
 ﻿@if (HttpContextAccessor.HttpContext.Request.Cookies["Username"] != null)
 {
 	<form asp-controller="Account" asp-action="Logout" method="post" class="navbar-right">
-		<ul class="nav navbar-nav navbar-right">
+		<ul class="nav navbar-nav navbar-right m-1">
 			<li>
 				<button type="submit" class="btn nav-link">Log Out @HttpContextAccessor.HttpContext.Request.Cookies["Username"]</button>
 			</li>
@@ -11,7 +11,7 @@
 else
 {
 	<form asp-controller="Account" asp-action="Index" method="post" class="navbar-right">
-		<ul class="nav navbar-nav navbar-right">
+		<ul class="nav navbar-nav navbar-right m-1">
 			<li>
 				<button type="submit" class="btn nav-link">Log In</button>
 			</li>
@@ -19,7 +19,7 @@ else
 	</form>
 
 	<form asp-controller="Account" asp-action="Register" method="get" class="navbar-right">
-		<ul class="nav navbar-nav navbar-right">
+		<ul class="nav navbar-nav navbar-right m-1">
 			<li>
 				<button type="submit" class="btn nav-link">Register</button>
 			</li>

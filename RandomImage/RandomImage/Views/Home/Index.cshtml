@@ -1,15 +1,41 @@
-﻿@model IEnumerable<User>
-
-@{
-	ViewBag.Title = "Random Images";
-}
+﻿@model DebugViewModel
 
 <div>
-	@foreach (var user in Model)
+	<h2>Debug Page</h2>
+	<p>Normally this would be some fancy front page for new views.</p>
+	<p>However, for the purposes of this test I am setting it as a means of reviewing the site's raw data to assist with testing.</p>
+</div>
+
+<div class="card-title m-2"><h3>User List</h3></div>
+<div class="row m-3">
+	@foreach (var user in Model.users)
 	{
 		<div class="card m-3">
-			<h3>ID: @user.Id</h3>
-			<h3>Name: @user.Username</h3>
+			ID: @user.Id <br />
+			Name: @user.Username
+		</div>
+	}
+</div>
+
+<div class="card-title m-2"><h3>Image List</h3></div>
+<div class="row m-3">
+	@foreach (var image in Model.images)
+	{
+		<div class="card m-3 bg-dark p-1 text-light" style="width:100px; height:100%; object-fit: cover">
+			<img class="img-fluid" src="~/Images/@image.Filename" alt="@image.Name" />
+			@image.Name
+		</div>
+	}
+</div>
+
+<div class="card-title m-2"><h3>Preference List</h3></div>
+<div class="row m-3">
+	@foreach (var userPreference in Model.userPreferences)
+	{
+		<div class="card m-3">
+			UserID: @userPreference.userId <br />
+			ImageID: @userPreference.imageId <br />
+			Preference: @userPreference.preference
 		</div>
 	}
 </div>

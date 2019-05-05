@@ -10,5 +10,6 @@ namespace RandomImage.ViewModels
 	{
 		public User user { get; set; }
 		public Image image { get; set; }
+		public UserPreference existingPreference { get; set; }
 	}
 }

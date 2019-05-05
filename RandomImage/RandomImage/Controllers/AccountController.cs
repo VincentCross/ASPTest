@@ -15,6 +15,7 @@ namespace RandomImage.Controllers
 	public class AccountController : Controller
 	{
 		private readonly IUserRepository _userRepository;
+		private readonly int _TOKENLIFEMINS = 60;
 
 		public AccountController(IUserRepository userRepository)
 		{
@@ -36,7 +37,7 @@ namespace RandomImage.Controllers
 		{
 			if (username != null)
 			{
-				return View("LoggedIn", LogInUser(username));
+				return View("_LoggedIn");
 			}
 
 			ViewBag.Required = "Please enter a username to log in.";
@@ -47,7 +48,7 @@ namespace RandomImage.Controllers
 		{
 			Response.Cookies.Delete("Username");
 
-			return View("LoggedOut");
+			return View("_LoggedOut");
 		}
 
 		[HttpGet]
@@ -77,7 +78,7 @@ namespace RandomImage.Controllers
 		private User LogInUser(string username)
 		{
 			CookieOptions options = new CookieOptions();
-			options.Expires = DateTime.Now.AddMinutes(5);
+			options.Expires = DateTime.Now.AddMinutes(_TOKENLIFEMINS);
 
 			Response.Cookies.Append("Username", username, options);
 

@@ -60,7 +60,7 @@ namespace RandomImage.Models.Repositories
 
 		public UserPreference GetPreference(int userId, int imageId)
 		{
-			return context.UserPreferences.First(usp => usp.userId == userId && usp.imageId == imageId);
+			return context.UserPreferences.FirstOrDefault(usp => usp.userId == userId && usp.imageId == imageId);
 		}
 
 		public UserPreference Update(UserPreference userPreferenceChanges)

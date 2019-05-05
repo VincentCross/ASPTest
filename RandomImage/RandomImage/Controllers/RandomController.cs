@@ -28,10 +28,16 @@ namespace RandomImage.Controllers
 			User currentUser = _userRepository.GetUser(Request.Cookies["Username"]);
 			if (currentUser != null)
 			{
+				Image randomImage = _imageRepository.GetRandomImage();
+
+				// Sets an existing preference if there is one
+				UserPreference existingPreference = _userPreferenceRepository.GetPreference(currentUser.Id, randomImage.Id);
+				
 				RandomIndexViewModel randomIndexViewModel = new RandomIndexViewModel()
 				{
 					user = _userRepository.GetUser(Request.Cookies["Username"]),
-					image = _imageRepository.GetRandomImage()
+					image = randomImage,
+					existingPreference = existingPreference
 				};
 
 				return View("Index", randomIndexViewModel);
@@ -70,6 +76,20 @@ namespace RandomImage.Controllers
 			_userPreferenceRepository.Add(userPreference);
 
 			return RedirectToAction("Index");
+		}
+
+		[HttpPost]
+		public IActionResult RemovePreference(RandomIndexViewModel randomIndexViewModel)
+		{
+			DeletePreference(randomIndexViewModel.user.Id, randomIndexViewModel.image.Id);
+
+			return RedirectToAction("Index");
+		}
+
+		private void DeletePreference(int userId, int imageId)
+		{
+			UserPreference userPreferenceToDelete = _userPreferenceRepository.GetPreference(userId, imageId);
+			_userPreferenceRepository.Delete(userPreferenceToDelete);
 		}
 	}
 }

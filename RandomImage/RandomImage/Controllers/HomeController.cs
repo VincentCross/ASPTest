@@ -23,7 +23,12 @@ namespace RandomImage.Controllers
 
 		public ViewResult Index()
 		{
-			var model = _userRepository.GetAllUsers();
+			DebugViewModel model = new DebugViewModel()
+			{
+				users = _userRepository.GetAllUsers(),
+				images = _imageRepository.GetAllImages(),
+				userPreferences = _userPreferenceRepository.GetAllUserPreferences()
+			};
 
 			return View("~/Views/Home/Index.cshtml", model);
 		}
@@ -51,8 +56,7 @@ namespace RandomImage.Controllers
 		[HttpPost]
 		public IActionResult Likes(HomeLikesDislikesViewModel model)
 		{
-			UserPreference userPreferenceToDelete = _userPreferenceRepository.GetPreference(model.user.Id, model.removeImage.Id);
-			_userPreferenceRepository.Delete(userPreferenceToDelete);
+			DeletePreference(model.user.Id, model.removeImage.Id);
 
 			return RedirectToAction("Likes");
 		}
@@ -75,10 +79,15 @@ namespace RandomImage.Controllers
 		[HttpPost]
 		public IActionResult Dislikes(HomeLikesDislikesViewModel model)
 		{
-			UserPreference userPreferenceToDelete = _userPreferenceRepository.GetPreference(model.user.Id, model.removeImage.Id);
-			_userPreferenceRepository.Delete(userPreferenceToDelete);
+			DeletePreference(model.user.Id, model.removeImage.Id);
 
 			return RedirectToAction("Dislikes");
+		}
+
+		private void DeletePreference(int userId, int imageId)
+		{
+			UserPreference userPreferenceToDelete = _userPreferenceRepository.GetPreference(userId, imageId);
+			_userPreferenceRepository.Delete(userPreferenceToDelete);
 		}
 
 		// Helper function to prepare the HomeLikesDislikesViewModel for the likes and dislikes pages
