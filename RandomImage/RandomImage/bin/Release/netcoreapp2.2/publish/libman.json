@@ -1,0 +1,25 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "twitter-bootstrap@4.3.1",
+      "destination": "wwwroot/lib/twitter-bootstrap/"
+    },
+    {
+      "library": "jquery@3.4.1",
+      "destination": "wwwroot/lib/jquery/"
+    },
+    {
+      "library": "open-iconic@1.1.1",
+      "destination": "wwwroot/lib/open-iconic/",
+			"files": [
+				"font/css/open-iconic.min.css",
+				"png/home-2x.png",
+				"png/thumb-down-4x.png",
+				"png/thumb-up-4x.png",
+				"png/ban-4x.png"
+			]
+    }
+  ]
+}
