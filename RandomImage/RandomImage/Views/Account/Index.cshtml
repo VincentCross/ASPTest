@@ -1,6 +1,15 @@
-﻿<form asp-controller="Account" asp-action="WriteUserCookie">
-	<div class="card">
-		Username: <input type="text" name="username" />
-		<input type="submit" value="Login" />
-	</div>
-</form>
+﻿@if (HttpContextAccessor.HttpContext.Request.Cookies["Username"] != null)
+{
+	<h1>You are already logged in.</h1>
+}
+else
+{
+	<form asp-controller="Account" asp-action="Login">
+		<div class="card bg-dark m-3 p-2 text-light" style="width:200px">
+			Username: <input type="text" name="username" />
+			<input type="submit" value="Login" />
+			<p class="text-danger" style="font-size:smaller">@ViewBag.Required</p>
+		</div>
+	</form>
+}
+

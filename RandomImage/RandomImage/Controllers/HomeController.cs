@@ -34,14 +34,18 @@ namespace RandomImage.Controllers
 		}
 
 		[HttpGet]
-		public ViewResult Likes()
+		public IActionResult Likes()
 		{
-			User currentUser = new User() { Id = 1, Username = "Bob" }; // TODO implement user recognition
+			User currentUser = _userRepository.GetUser(Request.Cookies["Username"]);
+			if (currentUser != null)
+			{
+				// Get all likes for user
+				IEnumerable<UserPreference> userPreferenceList = _userPreferenceRepository.GetLikesForUser(currentUser);
 
-			// Get all likes for user
-			IEnumerable<UserPreference> userPreferenceList = _userPreferenceRepository.GetLikesForUser(currentUser);
+				return View("~/Views/Home/Likes.cshtml", PrepareModel(userPreferenceList, currentUser));
+			}
 
-			return View("~/Views/Home/Likes.cshtml", PrepareModel(userPreferenceList, currentUser));
+			return RedirectToAction("Index", "Account");
 		}
 
 		[HttpPost]
@@ -54,14 +58,18 @@ namespace RandomImage.Controllers
 		}
 
 		[HttpGet]
-		public ViewResult Dislikes()
+		public IActionResult Dislikes()
 		{
-			User currentUser = new User() { Id = 1, Username = "Bob" }; // TODO implement user recognition
+			User currentUser = _userRepository.GetUser(Request.Cookies["Username"]);
+			if (currentUser != null)
+			{
+				// Get all dislikes for user
+				IEnumerable<UserPreference> userPreferenceList = _userPreferenceRepository.GetDislikesForUser(currentUser);
 
-			// Get all dislikes for user
-			IEnumerable<UserPreference> userPreferenceList = _userPreferenceRepository.GetDislikesForUser(currentUser);
+				return View("~/Views/Home/Dislikes.cshtml", PrepareModel(userPreferenceList, currentUser));
+			}
 
-			return View("~/Views/Home/Dislikes.cshtml", PrepareModel(userPreferenceList, currentUser));
+			return RedirectToAction("Index", "Account");
 		}
 
 		[HttpPost]

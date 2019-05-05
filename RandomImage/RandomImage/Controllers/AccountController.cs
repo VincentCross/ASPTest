@@ -23,25 +23,65 @@ namespace RandomImage.Controllers
 
 		public IActionResult Index()
 		{
+			if(Request.Cookies["Username"] != null)
+			{
+				return RedirectToAction("Index", "Home");
+			}
+
 			return View();
 		}
 
 		[HttpPost]
-		public IActionResult WriteUserCookie(string username)
+		public ViewResult Login(string username)
+		{
+			if (username != null)
+			{
+				return View("LoggedIn", LogInUser(username));
+			}
+
+			ViewBag.Required = "Please enter a username to log in.";
+			return View("Index");
+		}
+
+		public IActionResult Logout()
+		{
+			Response.Cookies.Delete("Username");
+
+			return View("LoggedOut");
+		}
+
+		[HttpGet]
+		public ViewResult Register()
+		{
+			return View("Register");
+		}
+
+		[HttpPost]
+		public ViewResult Register(string username)
+		{
+			if (username != null)
+			{
+				_userRepository.Add(new User()
+				{
+					Username = username
+				});
+
+				LogInUser(username);
+				return View("_Registered");
+			}
+
+			ViewBag.Required = "Please enter a username to register.";
+			return View();
+		}
+
+		private User LogInUser(string username)
 		{
 			CookieOptions options = new CookieOptions();
 			options.Expires = DateTime.Now.AddMinutes(5);
 
 			Response.Cookies.Append("Username", username, options);
 
-			User activeUser = _userRepository.GetUser(username);
-			
-			return View("LoggedIn", activeUser);
-		}
-
-		public string ReadUserCookie()
-		{
-			return Request.Cookies["Username"];
+			return _userRepository.GetUser(username);
 		}
 	}
 }

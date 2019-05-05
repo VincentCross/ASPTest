@@ -23,15 +23,21 @@ namespace RandomImage.Controllers
 		}
 
 		// Produces a random image when the page loads.
-		public ViewResult Index()
+		public IActionResult Index()
 		{
-			RandomIndexViewModel randomIndexViewModel = new RandomIndexViewModel()
+			User currentUser = _userRepository.GetUser(Request.Cookies["Username"]);
+			if (currentUser != null)
 			{
-				user = _userRepository.GetUser(1), // TODO implement user recognition
-				image = _imageRepository.GetRandomImage()
-			};
+				RandomIndexViewModel randomIndexViewModel = new RandomIndexViewModel()
+				{
+					user = _userRepository.GetUser(Request.Cookies["Username"]),
+					image = _imageRepository.GetRandomImage()
+				};
 
-			return View("Index", randomIndexViewModel);
+				return View("Index", randomIndexViewModel);
+			}
+
+			return RedirectToAction("Index", "Account");
 		}
 
 		// Creates a record in the UserPreferenceRepository linking the user to the image they liked

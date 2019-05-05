@@ -29,6 +29,7 @@ namespace RandomImage
 			services.AddSingleton<IUserRepository, MockUserRepository>();
 			services.AddSingleton<IImageRepository, MockImageRepository>();
 			services.AddSingleton<IUserPreferenceRepository, MockUserPreferenceRepository>();
+			services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

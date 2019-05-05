@@ -1,0 +1,8 @@
+﻿<form asp-controller="Account" asp-action="Register" method="post">
+	<div class="card bg-dark m-3 p-2 text-light" style="width:200px">
+		Username: <input type="text" name="username" />
+		<input type="submit" value="Register" />
+		<p class="text-danger" style="font-size:smaller">@ViewBag.Required</p>
+	</div>
+		
+</form>
